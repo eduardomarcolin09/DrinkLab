@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DrinkLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon_io/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon_io/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_io/favicon-16x16.png') }}">
@@ -92,12 +93,12 @@
             <!-- Formulário de Login -->
             <form action="/login" method="POST" class="mt-6 space-y-4">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input type="email" id="email" name="email" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+                    <label for="email" class="block text-sm font-medium text-gray-700"><i class="fa-solid fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="exemploemail@gmail.com">
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Senha</label>
-                    <input type="password" id="password" name="password" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300">
+                    <label for="password" class="block text-sm font-medium text-gray-700"><i class="fa-solid fa-lock"></i> Senha</label>
+                    <input type="password" id="password" name="password" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="exemplosenha123">
                 </div>
                 <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
                     Entrar
@@ -113,10 +114,10 @@
             <!-- Login com Redes Sociais -->
             <div class="mt-6 flex flex-col space-y-4">
                 <a href="/auth/google/redirect" class="w-full text-center py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
-                    Entrar com Google
+                    <i class="fa-brands fa-google"></i> Entrar com Google
                 </a>
                 <a href="/auth/github/redirect" class="w-full text-center py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900">
-                    Entrar com GitHub
+                    <i class="fa-brands fa-github"></i> Entrar com GitHub
                 </a>
             </div>
 

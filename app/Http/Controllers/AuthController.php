@@ -37,6 +37,7 @@ class AuthController extends Controller
     // Método para verificar se o usuário está logado
     public function logged()
     {
-        return response()->json(auth()->user());
+        // return response()->json(auth()->user());
+        
     }
 }
