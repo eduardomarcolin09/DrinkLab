@@ -38,6 +38,12 @@ class AuthController extends Controller
     public function logged()
     {
         // return response()->json(auth()->user());
-        
+        return redirect('/');
+    }
+
+    public function logout()
+    {
+        Auth::logout(); 
+        return redirect('/'); 
     }
 }

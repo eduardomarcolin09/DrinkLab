@@ -11,3 +11,4 @@ Route::get('/', function () {
 Route::get('/auth/{provider}/redirect', [AuthController::class, 'redirectToProvider']);
 Route::get('/auth/{provider}/callback', [AuthController::class, 'handleProviderCallback']);
 Route::get('/logged', [AuthController::class, 'logged']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
