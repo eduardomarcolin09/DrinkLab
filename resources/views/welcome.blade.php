@@ -18,6 +18,7 @@
             modal.classList.toggle('hidden');
             modal.classList.toggle('flex');
         }
+
     </script>
 </head>
 
@@ -31,8 +32,8 @@
                 <a href="#" class="text-gray-800 hover:text-blue-500">Início</a>
                 <a href="#sobre" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
                 <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
-            <!-- Verificar se o usuário está logado -->
-            @auth
+                <!-- Verificar se o usuário está logado -->
+                @auth
                 <div class="relative">
                     <!-- Ícone do Usuário (Avatar) e Nome -->
                     <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-gray-800">
@@ -55,11 +56,11 @@
                         </ul>
                     </div>
                 </div>
-            @else
+                @else
                 <button onclick="toggleModal()" class="text-gray-800 hover:text-blue-500">
                     Entrar
                 </button>
-            @endauth
+                @endauth
             </div>
         </div>
     </nav>
@@ -80,24 +81,52 @@
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <img src="https://blog.coffeemais.com/wp-content/uploads/2022/02/cafe-com-leite-condensado-topo.jpg" alt="Cafés" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-800">Cafés</h3>
+                    <h3 class="text-xl font-bold text-gray-800">
+                        @auth
+                        <a href="{{ route('cafes') }}">Cafés</a>
+                        @else
+                        <span>Cafés</span>
+                        @endauth
+                    </h3>
                     <p class="text-gray-600 mt-2">Explore receitas deliciosas de cafés para começar bem o dia.</p>
+                    <!-- o @ guest verifica se o Usuário NÃO está logado, mt melhor do que usar JS pra esconder o elemento e etc..-->
+                    @guest
+                    <span class="text-red-500 text-sm">Você precisa estar logado para acessar</span>
+                    @endguest
                 </div>
             </div>
             <!-- C2 -->
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <img src="https://media.istockphoto.com/id/1323890695/pt/foto/pink-grapefruit-and-rosemary-gin-cocktail-is-served-in-a-prepared-gin-glasses.jpg?s=612x612&w=0&k=20&c=VKC8YW2hiWKH53GhPpFaYKHqsqDvk-LJ3OPuWhtm4MU=" alt="Coquetéis" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-800">Coquetéis</h3>
+                    <h3 class="text-xl font-bold text-gray-800">
+                        @auth
+                        <a href="{{ route('coqueteis') }}">Coquetéis</a>
+                        @else
+                        <span>Coquetéis</span>
+                        @endauth
+                    </h3>
                     <p class="text-gray-600 mt-2">Aprenda a preparar coquetéis sofisticados para qualquer evento.</p>
+                    @guest
+                    <span class="text-red-500 text-sm">Você precisa estar logado para acessar</span>
+                    @endguest
                 </div>
             </div>
             <!-- C3 -->
             <div class="bg-white shadow-md rounded-lg overflow-hidden">
                 <img src="https://cdn.oantagonista.com/uploads/2024/10/vitamina-de-frutas_1728190598846-1024x576.jpg" alt="Vitaminas" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-800">Vitaminas</h3>
-                    <p class="text-gray-600 mt-2">Receitas saudáveis e deliciosas para o dia a dia.</p>
+                    <h3 class="text-xl font-bold text-gray-800">
+                        @auth
+                        <a href="{{ route('vitaminas') }}">Vitaminas</a>
+                        @else
+                        <span>Vitaminas</span>
+                        @endauth
+                    </h3>
+                    <p class="text-gray-600 mt-2">Receitas nutritivas para tornar seu dia mais saboroso e saudável.</p>
+                    @guest
+                    <span class="text-red-500 text-sm">Você precisa estar logado para acessar</span>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -153,10 +182,10 @@
         </div>
     </div>
 
-<!-- Jeito certo de referenciar Scripts em um projeto Laravel: (o script tem que estar na public)-->
-<script src="{{ asset('js/scripts.js') }}"></script>
+    <!-- Jeito certo de referenciar Scripts em um projeto Laravel: (o script tem que estar na public)-->
+    <script src="{{ asset('js/scripts.js') }}"></script>
 
-<!-- Jeito errado: -->
-<!-- <script src="/resources/js/scripts.js"></script> -->
+    <!-- Jeito errado: -->
+    <!-- <script src="/resources/js/scripts.js"></script> -->
 </body>
 </html>
