@@ -118,7 +118,7 @@
                 <div class="p-6">
                     <h3 class="text-xl font-bold text-gray-800">
                         @auth
-                        <a href="{{ route('vitaminas') }}">Vitaminas</a>
+                        <a href="#">Vitaminas</a>
                         @else
                         <span>Vitaminas</span>
                         @endauth
