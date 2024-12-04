@@ -11,15 +11,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon_io/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('favicon_io/site.webmanifest') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Função para abrir e fechar a modal
-        function toggleModal() {
-            const modal = document.getElementById('auth-modal');
-            modal.classList.toggle('hidden');
-            modal.classList.toggle('flex');
-        }
-
-    </script>
 </head>
 
 <body class="bg-gray-50 font-sans">
@@ -29,7 +20,7 @@
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="/" class="text-2xl font-bold text-gray-800 hover:text-blue-500">DrinkLab</a>
             <div class="flex items-center space-x-6">
-                <a href="#" class="text-gray-800 hover:text-blue-500">Início</a>
+                <a href="{{ route('homepage') }}" class="text-gray-800 hover:text-blue-500">Início</a>
                 <a href="#sobre" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
                 <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
                 <!-- Verificar se o usuário está logado -->
@@ -37,9 +28,10 @@
                 <div class="relative">
                     <!-- Ícone do Usuário (Avatar) e Nome -->
                     <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-gray-800">
-                        <img src="{{ Auth::user()->provider_avatar }}" alt="Avatar" class="w-8 h-8 rounded-full">
+                        <img src="{{ Auth::user()->provider_avatar ? Auth::user()->provider_avatar : asset('imagens/default-avatar.jpg') }}" alt="Avatar" class="w-8 h-8 rounded-full">
                         <span>{{ Auth::user()->name }}</span>
                     </button>
+
 
                     <!-- Dropdown com as opções Meu Perfil e Deslogar -->
                     <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg hidden">
@@ -146,7 +138,8 @@
             <p class="text-gray-600 text-center mt-2">Insira seu email e senha, ou entre com suas redes sociais.</p>
 
             <!-- Formulário de Login -->
-            <form action="/login" method="POST" class="mt-6 space-y-4">
+            <form action="{{ route('login') }}" method="POST" class="mt-6 space-y-4">
+                @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700"><i class="fa-solid fa-envelope"></i> Email</label>
                     <input type="email" id="email" name="email" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="exemploemail@gmail.com">
@@ -159,6 +152,19 @@
                     Entrar
                 </button>
             </form>
+
+            <!-- Exibe erros de login, se houver -->
+            @if ($errors->any())
+            <div class="mt-4 text-red-500 text-sm">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+
+            <p class="text-center mt-4 text-gray-600">Não tem uma conta? <a href="/register" class="text-blue-500 hover:underline">Cadastre-se</a></p>
 
             <div class="mt-6 flex items-center justify-between">
                 <span class="w-1/5 border-b"></span>
@@ -185,7 +191,5 @@
     <!-- Jeito certo de referenciar Scripts em um projeto Laravel: (o script tem que estar na public)-->
     <script src="{{ asset('js/scripts.js') }}"></script>
 
-    <!-- Jeito errado: -->
-    <!-- <script src="/resources/js/scripts.js"></script> -->
 </body>
 </html>

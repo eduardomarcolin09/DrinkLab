@@ -14,3 +14,10 @@ document.addEventListener('click', function(event) {
         dropdown.classList.add('hidden'); // Fecha o dropdown
     }
 });
+
+// Função para abrir e fechar a modal
+function toggleModal() {
+    const modal = document.getElementById('auth-modal');
+    modal.classList.toggle('hidden');
+    modal.classList.toggle('flex');
+}

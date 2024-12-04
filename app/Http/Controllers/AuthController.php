@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
@@ -43,7 +45,55 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout(); 
-        return redirect('/'); 
+        Auth::logout();
+        return redirect('/');
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('register');
+    }
+
+    public function register(Request $request)
+    {
+        // Validação dos dados
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Criação do usuário
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // Login automático após cadastro
+        Auth::login($user);
+
+        return redirect('/')->with('success', 'Cadastro realizado com sucesso!');
+    }
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        // Verificar se o e-mail existe
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            return view('welcome', ['error' => 'Este e-mail não está cadastrado no sistema.']);
+        }
+
+        // Verificar credenciais
+        if (Auth::attempt($request->only('email', 'password'))) {
+            return view('welcome');
+        }
+
+        return view('welcome', ['error' => 'E-mail ou senha incorretos.']);
     }
 }
