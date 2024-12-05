@@ -22,13 +22,24 @@ class AuthController extends Controller
         $providerUser = Socialite::driver($provider)->user();
 
         // dd($providerUser->avatar);
+
+        // Normaliza o URL do avatar
+        $avatarUrl = $providerUser->avatar 
+        ? preg_replace('/\?sz=\d+|=s\d+-c/', '', $providerUser->avatar) 
+        : null;
+
+        // Explicação do porque usar o preg_replace:
+        // O Google usa parâmetros como s96-c nos URLs de avatar para definir tamanho e estilo da imagem, mas 
+        // eles podem causar problemas de compatibilidade em alguns contextos. A solução foi remover esses 
+        // parâmetros usando preg_replace, transformando o link em um URL direto e funcional.
+
         // Verifica se o usuário já existe pelo e-mail, senão cria um novo
         $user = User::updateOrCreate([
             'email' => $providerUser->email,
         ], [
             'provider_id' => $providerUser->id,
             'name' => $providerUser->name,
-            'provider_avatar' => $providerUser->avatar,
+            'provider_avatar' => $avatarUrl,
             'provider_name' => $provider,
         ]);
 
