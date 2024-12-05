@@ -1,66 +1,89 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🍹 **DrinkLab**
+O **DrinkLab**  é uma aplicação web desenvolvida em **Laravel** que permite aos usuários explorar uma coleção de receitas de bebidas, como cafés, coquetéis e vitaminas. A aplicação oferece funcionalidades de **login social** utilizando **Google** e **GitHub**, além de permitir que os usuários cadastrados visualizem e interajam com receitas de bebidas.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🛠️ **Funcionalidades**
 
-## About Laravel
+- **Login Social**: Permite autenticação via Google e GitHub.
+- **Cadastro e Login**: Usuários podem se cadastrar com e-mail ou fazer login usando contas sociais.
+- **Exploração de Receitas**: Os usuários podem acessar "galerias" de Receitas, ainda SEM páginas de cada drink e sua respectiva receita.
+- **Autenticação de Acesso**: Algumas funcionalidades exigem que o usuário esteja autenticado para visualização.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 💻 **Tecnologias Utilizadas**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Laravel**: Framework PHP para desenvolvimento web.
+- **Laravel Socialite**: Biblioteca para integração com provedores de autenticação social (Google, GitHub).
+- **Tailwind CSS**: Framework CSS para um design moderno e responsivo. 
+- **Font Awesome**: Biblioteca de ícones para componentes da interface.
+- **APIs externas**:
+  - [Sample APIs - Coffee](https://api.sampleapis.com/coffee/hot)
+  - [The Cocktail DB](https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ⚙ **Pré-requisitos**
 
-## Learning Laravel
+- PHP >= 8.1
+- Composer
+- Laravel 10.x
+- Credenciais de autenticação dos provedores sociais (Google, GitHub)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📝 **Instalação**
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Clonar o Repositório
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/eduardomarcolin09/DrinkLab.git
+```
+### 2. Instalar Dependências
 
-## Laravel Sponsors
+```bash
+composer install
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 3. Configurar o Ambiente
 
-### Premium Partners
+```bash
+cp .env.example .env
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 4. Gerar a Chave de Aplicação
 
-## Contributing
+```bash
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5. Configurar Credenciais de Autenticação Social
+No arquivo .env, adicione as credenciais de autenticação dos provedores sociais:
 
-## Code of Conduct
+```
+# Google
+GOOGLE_CLIENT_ID=seu-client-id
+GOOGLE_CLIENT_SECRET=seu-client-secret
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# GitHub
+GITHUB_CLIENT_ID=seu-client-id
+GITHUB_CLIENT_SECRET=seu-client-secret
+GITHUB_REDIRECT_URI=http://localhost:8000/auth/github/callback
+```
 
-## Security Vulnerabilities
+### 6. Configurar Banco de Dados
+Crie o banco de dados e execute as migrations:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan migrate
+```
 
-## License
+### 7. Executar o Servidor de Desenvolvimento
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan serve
+```
+
+Agora a aplicação estará disponível em http://localhost:8000.
+
+## 📚 **Notas Finais**
+
+- A aplicação ainda está em desenvolvimento, então novas funcionalidades e melhorias serão adicionadas.
+
+- A autenticação social está funcional, mas para um ambiente de produção, não se esqueça de configurar corretamente as credenciais e URLs de retorno nos provedores (Google, GitHub).
+
+- Objetivo do trabalho - Aprender mais sobre o Laravel Socialite e estilização utilizando o Tailwind CSS
