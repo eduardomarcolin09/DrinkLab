@@ -77,13 +77,6 @@
         </div>
     </footer>
 
-    <script>
-        function toggleDropdown() {
-            const dropdown = document.getElementById('dropdown-menu');
-            dropdown.classList.toggle('hidden');
-        }
-    </script>
-
+<script src="{{ asset('js/scripts.js') }}"></script>
 </body>
-
 </html>

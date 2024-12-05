@@ -9,6 +9,7 @@
             @auth
             <div class="relative">
                 <!-- Ícone do Usuário (Avatar) e Nome -->
+                {{-- {{ dd(Auth::user()->provider_avatar) }} --}}
                 <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-gray-800">
                     <img src="{{ Auth::user()->provider_avatar ? Auth::user()->provider_avatar : asset('imagens/default-avatar.jpg') }}" alt="Avatar" class="w-8 h-8 rounded-full">
                     <span>{{ Auth::user()->name }}</span>
@@ -17,7 +18,7 @@
                 <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg hidden">
                     <ul>
                         <li>
-                            <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Meu Perfil</a>
+                            <a href="{{ route('user.edit', Auth::user()->id) }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-100"><i class="fa-solid fa-user-pen"></i> Editar Perfil</a>
                         </li>
                         <li>
                             <form action="{{ route('logout') }}" method="POST">

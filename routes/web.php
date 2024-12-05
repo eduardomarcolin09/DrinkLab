@@ -3,6 +3,7 @@
 use App\Http\Controllers\CafeController;
 use App\Http\Controllers\CoquetelController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -31,3 +32,9 @@ Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
+});

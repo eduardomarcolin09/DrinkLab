@@ -68,9 +68,6 @@
     <!-- Footer -->
     @include('components.footer')
 
-    <!-- Modal de Cadastro/Login -->
-    @include('components.modalCadastro')
-
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
 </html>

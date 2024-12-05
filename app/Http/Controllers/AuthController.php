@@ -21,6 +21,7 @@ class AuthController extends Controller
     {
         $providerUser = Socialite::driver($provider)->user();
 
+        // dd($providerUser->avatar);
         // Verifica se o usuário já existe pelo e-mail, senão cria um novo
         $user = User::updateOrCreate([
             'email' => $providerUser->email,
@@ -51,7 +52,7 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('register');
+        return view('user/register');
     }
 
     public function register(Request $request)
