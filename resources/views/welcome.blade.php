@@ -16,46 +16,7 @@
 <body class="bg-gray-50 font-sans">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-gray-800 hover:text-blue-500">DrinkLab</a>
-            <div class="flex items-center space-x-6">
-                <a href="{{ route('homepage') }}" class="text-gray-800 hover:text-blue-500">Início</a>
-                <a href="#sobre" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
-                <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
-                <!-- Verificar se o usuário está logado -->
-                @auth
-                <div class="relative">
-                    <!-- Ícone do Usuário (Avatar) e Nome -->
-                    <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-gray-800">
-                        <img src="{{ Auth::user()->provider_avatar ? Auth::user()->provider_avatar : asset('imagens/default-avatar.jpg') }}" alt="Avatar" class="w-8 h-8 rounded-full">
-                        <span>{{ Auth::user()->name }}</span>
-                    </button>
-
-
-                    <!-- Dropdown com as opções Meu Perfil e Deslogar -->
-                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg hidden">
-                        <ul>
-                            <li>
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Meu Perfil</a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">Deslogar</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                @else
-                <button onclick="toggleModal()" class="text-gray-800 hover:text-blue-500">
-                    Entrar
-                </button>
-                @endauth
-            </div>
-        </div>
-    </nav>
+    @include('components.navbar')
 
     <!-- Header -->
     <header class="bg-cover bg-center h-96 flex items-center justify-center" style="background-image: url('https://www.beerpassclub.com/wp-content/uploads/2023/11/fresh-cocktails-with-ice-lemon-lime-fruits-generative-ai-scaled.webp');">
@@ -125,71 +86,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-6">
-        <div class="container mx-auto text-center">
-            <p>© 2024 Receitas de Bebidas. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    @include('components.footer')
 
     <!-- Modal de Cadastro/Login -->
-    <div id="auth-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex">
-        <div class="m-auto bg-white rounded-lg shadow-lg w-full max-w-md p-6 my-3">
-            <h2 class="text-2xl font-bold text-gray-800 text-center">Entrar</h2>
-            <p class="text-gray-600 text-center mt-2">Insira seu email e senha, ou entre com suas redes sociais.</p>
-
-            <!-- Formulário de Login -->
-            <form action="{{ route('login') }}" method="POST" class="mt-6 space-y-4">
-                @csrf
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700"><i class="fa-solid fa-envelope"></i> Email</label>
-                    <input type="email" id="email" name="email" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="exemploemail@gmail.com">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700"><i class="fa-solid fa-lock"></i> Senha</label>
-                    <input type="password" id="password" name="password" required class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-300" placeholder="exemplosenha123">
-                </div>
-                <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600">
-                    Entrar
-                </button>
-            </form>
-
-            <!-- Exibe erros de login, se houver -->
-            @if ($errors->any())
-            <div class="mt-4 text-red-500 text-sm">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
-            <p class="text-center mt-4 text-gray-600">Não tem uma conta? <a href="/register" class="text-blue-500 hover:underline">Cadastre-se</a></p>
-
-            <div class="mt-6 flex items-center justify-between">
-                <span class="w-1/5 border-b"></span>
-                <span class="text-xs text-gray-500 uppercase">ou</span>
-                <span class="w-1/5 border-b"></span>
-            </div>
-
-            <!-- Login com Redes Sociais -->
-            <div class="mt-6 flex flex-col space-y-4">
-                <a href="/auth/google/redirect" class="w-full text-center py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
-                    <i class="fa-brands fa-google"></i> Entrar com Google
-                </a>
-                <a href="/auth/github/redirect" class="w-full text-center py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900">
-                    <i class="fa-brands fa-github"></i> Entrar com GitHub
-                </a>
-            </div>
-
-            <button onclick="toggleModal()" class="mt-6 w-full text-center py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400">
-                Fechar
-            </button>
-        </div>
-    </div>
+    @include('components.modalCadastro')
 
     <!-- Jeito certo de referenciar Scripts em um projeto Laravel: (o script tem que estar na public)-->
     <script src="{{ asset('js/scripts.js') }}"></script>
-
 </body>
 </html>

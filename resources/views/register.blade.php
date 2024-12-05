@@ -12,16 +12,7 @@
 <body class="bg-gray-50 font-sans">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-gray-800 hover:text-blue-500">DrinkLab</a>
-            <div class="flex items-center space-x-6">
-                <a href="{{ route('homepage') }}" class="text-gray-800 hover:text-blue-500">Início</a>
-                <a href="#sobre" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
-                <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
-            </div>
-        </div>
-    </nav>
+    @include('components.navbar')
 
     <!-- Formulário de Cadastro -->
     <section class="container mx-auto px-6 py-12">
@@ -75,11 +66,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-6">
-        <div class="container mx-auto text-center">
-            <p>© 2024 DrinkLab. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    @include('components.footer')
+
+    <!-- Modal de Cadastro/Login -->
+    @include('components.modalCadastro')
 
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
