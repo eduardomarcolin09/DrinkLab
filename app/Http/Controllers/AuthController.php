@@ -23,10 +23,11 @@ class AuthController extends Controller
 
         // dd($providerUser->avatar);
 
-        // Normaliza o URL do avatar
-        $avatarUrl = $providerUser->avatar 
-        ? preg_replace('/\?sz=\d+|=s\d+-c/', '', $providerUser->avatar) 
-        : null;
+        // Normaliza o URL do avatar - as vezes a API do Google retorna a URL com adicionais,
+        // dai não renderiza a imagem, caso acontecer, usar:
+        // $avatarUrl = $providerUser->avatar 
+        // ? preg_replace('/\?sz=\d+|=s\d+-c/', '', $providerUser->avatar) 
+        // : null;
 
         // Explicação do porque usar o preg_replace:
         // O Google usa parâmetros como s96-c nos URLs de avatar para definir tamanho e estilo da imagem, mas 
@@ -39,7 +40,7 @@ class AuthController extends Controller
         ], [
             'provider_id' => $providerUser->id,
             'name' => $providerUser->name,
-            'provider_avatar' => $avatarUrl,
+            'provider_avatar' => $providerUser->avatar,
             'provider_name' => $provider,
         ]);
 

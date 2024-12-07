@@ -12,6 +12,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
 
+Route::get('/sobre-nos', function () {
+    return view('sobre-nos');
+})->name('sobre-nos');
 
 // Categorias
 Route::get('/cafes', [CafeController::class, 'index'])->name('cafes');
