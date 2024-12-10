@@ -17,12 +17,7 @@ Route::get('/sobre-nos', function () {
 })->name('sobre-nos');
 
 // Categorias
-Route::get('/cafes', [CafeController::class, 'index'])->name('cafes');
-Route::get('/coqueteis', [CoquetelController::class, 'index'])->name('coqueteis');
 
-Route::get('/vitaminas', function () {
-    return view('vitaminas');  
-})->name('vitaminas');
 
 // Autenticação com Socialite 
 Route::get('/auth/{provider}/redirect', [AuthController::class, 'redirectToProvider']);
@@ -40,4 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/delete/{user}', [UserController::class, 'destroy'])->name('user.delete');
+    Route::get('/cafes', [CafeController::class, 'index'])->name('cafes');
+    Route::get('/coqueteis', [CoquetelController::class, 'index'])->name('coqueteis');
+
+Route::get('/vitaminas', function () {
+    return view('vitaminas');  
+})->name('vitaminas');
 });
