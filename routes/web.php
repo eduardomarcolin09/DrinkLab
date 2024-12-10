@@ -26,8 +26,8 @@ Route::get('/logged', [AuthController::class, 'logged']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Cadastro manual
-Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
+Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [UserController::class, 'register']);
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
