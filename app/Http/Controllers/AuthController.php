@@ -67,18 +67,21 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
         // Verificar se o e-mail existe
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return view('welcome', ['error' => 'Este e-mail não está cadastrado no sistema.']);
+            return redirect()->back()->withErrors(['email' => 'Este e-mail não está cadastrado no sistema.'])
+            ->withInput();
         }
-
+    
         // Verificar credenciais
         if (Auth::attempt($request->only('email', 'password'))) {
-            return view('welcome');
+            return redirect('/');
         }
-
-        return view('welcome', ['error' => 'E-mail ou senha incorretos.']);
+    
+        return redirect()->back()->withErrors(['password' => 'E-mail ou senha incorretos.'])
+        ->withInput(); // Mantém os dados no Mooodal
     }
+    
 }

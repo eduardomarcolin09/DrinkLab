@@ -93,5 +93,10 @@
 
     <!-- Jeito certo de referenciar Scripts em um projeto Laravel: (o script tem que estar na public)-->
     <script src="{{ asset('js/scripts.js') }}"></script>
+        <script>
+        @if ($errors->any())
+            document.getElementById('auth-modal').classList.remove('hidden');
+        @endif
+    </script>
 </body>
 </html>

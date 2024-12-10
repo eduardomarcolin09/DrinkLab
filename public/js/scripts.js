@@ -20,4 +20,6 @@ function toggleModal() {
     const modal = document.getElementById('auth-modal');
     modal.classList.toggle('hidden');
     modal.classList.toggle('flex');
+    // Se o usuário fechar o modal após ver os erros, ele "limpa" a div:
+    document.getElementById('error-messages').classList.add('hidden');
 }

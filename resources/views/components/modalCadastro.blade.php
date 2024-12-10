@@ -1,5 +1,6 @@
-<div id="auth-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex">
-    <div class="m-auto bg-white rounded-lg shadow-lg w-full max-w-md p-6 my-3">
+<body class="bg-gray-50 font-sans">
+<div id="auth-modal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div class="m-auto bg-white rounded-lg shadow-lg w-full max-w-md p-6 my-3 overflow-hidden">
         <h2 class="text-2xl font-bold text-gray-800 text-center">Entrar</h2>
         <p class="text-gray-600 text-center mt-2">Insira seu email e senha, ou entre com suas redes sociais.</p>
 
@@ -20,16 +21,13 @@
         </form>
 
         <!-- Exibe erros de login, se houver -->
-        @if ($errors->any())
-        <div class="mt-4 text-red-500 text-sm">
+        <div id="error-messages" class="mt-4 text-red-500 text-sm @if(!$errors->any()) hidden @endif">
             <ul>
                 @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
-        @endif
-
         <p class="text-center mt-4 text-gray-600">Não tem uma conta? <a href="/register" class="text-blue-500 hover:underline">Cadastre-se</a></p>
 
         <div class="mt-6 flex items-center justify-between">
@@ -53,3 +51,12 @@
         </button>
     </div>
 </div>
+
+<!-- Script para abrir o modal se houver erro -->
+<script>
+    @if($errors->any())
+        document.getElementById('auth-modal').classList.remove('hidden');
+    @endif
+</script>
+
+</body>
