@@ -4,7 +4,7 @@
         <div class="flex items-center space-x-6">
             <a href="{{ route('homepage') }}" class="text-gray-800 hover:text-blue-500">Início</a>
             <a href="{{ route('sobre-nos') }}" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
-            <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
+            <a href="{{ route('contatos') }}" class="text-gray-800 hover:text-blue-500">Contatos</a>
             <!-- Verificar se o usuário está logado -->
             @auth
             <div class="relative">
