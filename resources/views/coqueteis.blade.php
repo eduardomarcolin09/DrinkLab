@@ -15,48 +15,8 @@
 
 <body class="bg-gray-50 font-sans">
 
-    <!-- Navbar com Avatar e Menu de Usuário -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-gray-800 hover:text-blue-500">DrinkLab</a>
-            <div class="flex items-center space-x-6">
-                <a href="/" class="text-gray-800 hover:text-blue-500">Início</a>
-                <a href="#sobre" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
-                <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
-                
-                <!-- Se o usuário estiver logado -->
-                @auth
-                <div class="relative">
-                    <!-- Ícone do Usuário (Avatar) e Nome -->
-                    <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-gray-800">
-                        <img src="{{ Auth::user()->provider_avatar }}" alt="Avatar" class="w-8 h-8 rounded-full">
-                        <span>{{ Auth::user()->name }}</span>
-                    </button>
-
-                    <!-- Dropdown com as opções Meu Perfil e Deslogar -->
-                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg hidden">
-                        <ul>
-                            <li>
-                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Meu Perfil</a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">Deslogar</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                @endauth
-
-                <!-- Se o usuário não estiver logado -->
-                @guest
-                <a href="{{ route('login') }}" class="text-gray-800 hover:text-blue-500">Entrar</a>
-                @endguest
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar -->
+    @include('components.navbar')
 
     <!-- Galeria de Coquetéis -->
     <section class="container mx-auto px-6 py-12">
@@ -78,11 +38,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-6">
-        <div class="container mx-auto text-center">
-            <p>© 2024 DrinkLab. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    @include('components.footer')
+    
+    <!-- Modal de Cadastro/Login -->
+    @include('components.modalCadastro')
 
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>

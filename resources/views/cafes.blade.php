@@ -16,41 +16,7 @@
 <body class="bg-gray-50 font-sans">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-gray-800 hover:text-blue-500">DrinkLab</a>
-            <div class="flex items-center space-x-6">
-                <a href="/" class="text-gray-800 hover:text-blue-500">Início</a>
-                <a href="#sobre" class="text-gray-800 hover:text-blue-500">Sobre nós</a>
-                <a href="#contatos" class="text-gray-800 hover:text-blue-500">Contatos</a>
-                
-                @auth
-                <div class="relative">
-                    <button onclick="toggleDropdown()" class="flex items-center space-x-2 text-gray-800">
-                        <img src="{{ Auth::user()->provider_avatar }}" alt="Avatar" class="w-8 h-8 rounded-full">
-                        <span>{{ Auth::user()->name }}</span>
-                    </button>
-
-                    <div id="dropdown-menu" class="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg hidden">
-                        <ul>
-                            <li><a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Meu Perfil</a></li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100">Deslogar</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                @endauth
-                
-                @guest
-                <a href="{{ route('login') }}" class="text-gray-800 hover:text-blue-500">Entrar</a>
-                @endguest
-            </div>
-        </div>
-    </nav>
+    @include('components.navbar')
 
     <!-- Galeria de Cafés -->
     <section class="container mx-auto px-6 py-12">
@@ -71,11 +37,11 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-6">
-        <div class="container mx-auto text-center">
-            <p>© 2024 DrinkLab. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+    <!-- Footer -->
+    @include('components.footer')
+
+    <!-- Modal de Cadastro/Login -->
+    @include('components.modalCadastro')
 
 <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
