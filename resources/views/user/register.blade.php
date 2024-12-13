@@ -13,13 +13,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
 
     <!-- Navbar -->
     @include('components.navbar')
 
     <!-- Formulário de Cadastro -->
-    <section class="container mx-auto px-6 py-12">
+    <section class="flex-grow container mx-auto px-6 py-12">
         <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="p-6">
                 <h2 class="text-2xl font-bold text-center text-gray-800">Cadastro de Usuário</h2>

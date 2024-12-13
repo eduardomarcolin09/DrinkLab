@@ -13,12 +13,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
     <!-- Navbar -->
     @include('components.navbar')
 
     <!-- Seção de Contato -->
-    <section class="container mx-auto px-6 py-12">
+    <section class="flex-grow container mx-auto px-6 py-12">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Fale Conosco</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -57,19 +57,16 @@
                     </div>
                 </div>
 
-            <!-- Mapa -->
-                <div class="w-full h-48 rounded overflow-hidden shadow-lg">
+                <!-- Mapa - Aumentei a altura para h-[400px] -->
+                <div class="w-full h-[400px] rounded overflow-hidden shadow-lg">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111489.17325234818!2d-51.61345484739339!3d-29.163591809097927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951c3caeba8136ab%3A0x468b5d9415ef0fd8!2sIFRS%20-%20Campus%20Bento%20Gon%C3%A7alves!5e0!3m2!1spt-BR!2sbr!4v1733865692071!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
-            <!-- 
-            Obs: Pra pegar o mapa eu tive que ir: Google Maps -> Digitar uma loc. -> Compartilhar -> Incorporar um mapa -> Copiei o código HTML
-            -->
 
-            <!-- Formulário -->
+            <!-- Formulário - Aumentei a altura mínima para min-h-[400px] -->
             <div>
-                <form class="bg-white shadow-md rounded-lg p-6 space-y-4" method="POST" action="">
-                @csrf
+                <form class="bg-white shadow-md rounded-lg p-6 space-y-4 min-h-[575px]" method="POST" action="">
+                    @csrf
                     <div>
                         <label for="name" class="block text-gray-700">Nome</label>
                         <input type="text" id="name" name="name" class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
@@ -93,7 +90,8 @@
 
     <!-- Modal de Cadastro/Login -->
     @include('components.modalCadastro')
-    
+
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
+
 </html>
