@@ -18,6 +18,20 @@ O **DrinkLab**  é uma aplicação web desenvolvida em **Laravel** que permite a
   - [Sample APIs - Coffee](https://api.sampleapis.com/coffee/hot)
   - [The Cocktail DB](https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail)
 
+## 🖼️ **Prévia**
+
+| Página Inicial | Modal Autenticação |
+|-------------------------------|-------------------------------|
+| ![Pagina Inicial](./imagens/preview1.png) | ![Modal Autenticação](./imagens/preview2.png) |
+
+| Página Sobre Nós | Página Contatos |
+|-------------------------------|-------------------------------|
+| ![Página Sobre Nós](./imagens/preview3.png) | ![Página Contatos](./imagens/preview4.png) |
+
+| Página de Cafés | Edição do Usuário |
+|-------------------------------|-------------------------------|
+| ![Página de Cafés](./imagens/preview5.png) | ![Página Contatos](./imagens/preview6.png) |
+
 ## ⚙ **Pré-requisitos**
 
 - PHP >= 8.1
